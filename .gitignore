@@ -1,0 +1,19 @@
+# Carpetas de trabajo local (no versionar contenido)
+output/
+input/
+input_local/
+input__resp_local/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Claude Code
+.claude/
