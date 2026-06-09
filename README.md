@@ -50,6 +50,10 @@ sin editar el código. Ej.: `set TTS_ENGINE=offline` antes de `python main.py`.
 ### 4. Recoge el audio
 En `output/`: `.mp3` si se usó edge-tts, `.wav` si se usó el backend offline.
 
+¿Quieres **conservar** algún audio (por ejemplo para comparar voces)? Muévelo a
+`output__resp_local/`. Esa carpeta es tu archivo personal y **no se versiona** en git, así que
+puedes guardar ahí lo que quieras sin ensuciar el repositorio.
+
 ## Configuración
 
 Edita las constantes al inicio de `main.py`:
@@ -76,25 +80,41 @@ Ver voces disponibles:
 ```bash
 edge-tts --list-voices                 # voces online (edge)
 edge-tts --list-voices | findstr en-US # filtrar por idioma (Windows)
-python list_voices.py                  # voces offline (SAPI5) + recordatorio edge
 ```
+- **`list_voices.bat`** (doble clic) — lista las voces **offline** (SAPI5) instaladas en tu
+  Windows y recuerda los comandos de edge. (Equivale a `python list_voices.py`.)
+- **`export_edge_voices.bat`** (doble clic) — guarda una **referencia local** de las voces
+  **online** en `docs/voices_en-US.md` y `docs/voices_es.md`, con la fecha de generación.
 
-Para guardar una **referencia local** de las voces online, ejecuta `export_edge_voices.bat`
-(doble clic): genera `docs/voices_en-US.md` y `docs/voices_es.md` con las voces edge actuales
-y la fecha de generación.
+¿Quieres comparar varias voces con el mismo texto? En `voice_tests_input/` hay textos de
+ejemplo en inglés (uno por estilo de voz). Copia uno a `input/`, cambia `EDGE_VOICE_EN` y corre
+`run.bat`. Esa carpeta **no se procesa sola**; solo se usa lo que copies a `input/`.
 
 ## Estructura
 ```
 20250816_text_to_audio/
-├── main.py           # lógica + configuración
-├── setup.py          # instala dependencias y crea carpetas
+├── main.py                 # lógica + configuración (incl. EDGE_VOICE_*)
+├── setup.py                # instala dependencias y crea carpetas
 ├── requirements.txt
-├── CLAUDE.md         # mapa del proyecto
-├── README.md
+├── run.bat                 # ejecutar en modo normal (edge)
+├── run_offline.bat         # ejecutar forzando offline (SAPI5)
+├── list_voices.py / .bat   # listar voces offline
+├── export_edge_voices.bat  # guardar referencia de voces edge en docs/
+├── README.md               # esta guía
+├── USAGE_TESTING.md        # guía de prueba/verificación
+├── CLAUDE.md               # mapa técnico del proyecto
 ├── audio_notes.md
-├── input/            # tus archivos (sufijo = idioma)
-└── output/           # audio generado (no versionado)
+├── docs/                   # listas de voces de referencia (versionado)
+├── voice_tests_input/      # textos de ejemplo por estilo (versionado, NO se procesa solo)
+├── input/                  # tus archivos (sufijo = idioma)
+├── output/                 # audio generado (NO versionado)
+└── output__resp_local/     # audios que quieras conservar (NO versionado)
 ```
+
+### Qué se versiona y qué no
+- **Sí** se versiona: el código, los `.bat`, la documentación, `docs/` y `voice_tests_input/`.
+- **No** se versiona (git lo ignora): `output/`, `output__resp_local/`, `input/` y las carpetas
+  de trabajo local. Ahí van tus archivos personales y los audios generados.
 
 ## Troubleshooting
 

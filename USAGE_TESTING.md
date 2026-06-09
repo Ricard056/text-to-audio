@@ -177,6 +177,22 @@ python main.py
   Crea `docs/voices_en-US.md` y `docs/voices_es.md` con las voces edge actuales y la fecha,
   para consultarlas sin volver a correr el comando.
 
+### Comparar voces con textos de ejemplo (`voice_tests_input/`)
+
+En la carpeta **`voice_tests_input/`** hay textos de ejemplo en inglés, uno por estilo de voz
+(noticias, novela, conversación, etc.). Sirven para escuchar cómo suena cada voz con el mismo
+texto.
+
+> **Importante:** `voice_tests_input/` **NO se procesa automáticamente**. El programa solo lee
+> lo que esté en `input/`. Para probar: copia un `.txt` de `voice_tests_input/` a `input/`,
+> cambia `EDGE_VOICE_EN` en `main.py`, y corre `run.bat`.
+
+### Guardar tus audios de comparación (`output__resp_local/`)
+
+`output/` se sobrescribe cada vez que ejecutas. Si quieres **conservar** un audio (por ejemplo
+para comparar dos voces), muévelo a **`output__resp_local/`**: es una carpeta personal que git
+ignora, pensada justo para eso.
+
 ---
 
 ## 10. Archivos que NO deberías tocar normalmente
