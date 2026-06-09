@@ -152,18 +152,38 @@ python main.py
 
 - **`input/`** → agrega, renombra o borra tus archivos de texto libremente.
 - **`output/`** → puedes borrar audios viejos cuando quieras.
-- **`LANGUAGE_MAP`** (dentro de `main.py`) → solo si quieres **cambiar las voces** por idioma.
-  Las voces neurales actuales son: inglés `en-US-AriaNeural`, México `es-MX-DaliaNeural`,
-  España `es-ES-ElviraNeural`. Para ver otras voces disponibles, en la terminal:
+- **Voces edge (modo normal)** → para cambiar la voz de un idioma, edita estas líneas que
+  están **cerca del inicio de `main.py`** (no hace falta tocar `LANGUAGE_MAP`):
+  ```python
+  EDGE_VOICE_EN = "en-US-AriaNeural"    # Inglés         - femenina
+  EDGE_VOICE_MX = "es-MX-DaliaNeural"   # Español México - femenina
+  EDGE_VOICE_ES = "es-ES-ElviraNeural"  # Español España - femenina
+  ```
+  Cambia el texto entre comillas por otra voz, guarda y vuelve a ejecutar `run.bat`.
+  Ejemplo (inglés masculino): `EDGE_VOICE_EN = "en-US-GuyNeural"`.
+
+### Cómo ver qué voces existen
+
+- **Voces online (edge, mejor calidad)** — en la terminal:
   ```bat
   edge-tts --list-voices
+  edge-tts --list-voices | findstr en-US
+  edge-tts --list-voices | findstr es-
   ```
+- **Voces offline (Windows/SAPI5)** — doble clic en **`list_voices.bat`**
+  (o `python list_voices.py`). Muestra las voces instaladas en tu Windows y recuerda los
+  comandos de edge.
+- **Guardar una referencia local de voces online** — doble clic en **`export_edge_voices.bat`**.
+  Crea `docs/voices_en-US.md` y `docs/voices_es.md` con las voces edge actuales y la fecha,
+  para consultarlas sin volver a correr el comando.
 
 ---
 
 ## 10. Archivos que NO deberías tocar normalmente
 
-- **`main.py`** → es el programa. No lo edites salvo cambios controlados (como `LANGUAGE_MAP`).
+- **`main.py`** → es el programa. Normalmente lo único que conviene tocar son las constantes
+  **`EDGE_VOICE_EN` / `EDGE_VOICE_MX` / `EDGE_VOICE_ES`** si quieres cambiar voces. El resto
+  no lo edites salvo cambios controlados.
 - **`requirements.txt`** → solo se usa para instalar dependencias; no lo edites a mano.
 - **`CLAUDE.md`** → documentación interna del proyecto; no es para uso diario.
 

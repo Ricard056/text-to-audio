@@ -61,11 +61,27 @@ SPEECH_RATE = 150          # solo backend offline: 100=lento, 150=normal, 200=r�
 VOLUME = 1.0               # solo backend offline: 0.0 a 1.0
 ```
 
-Las voces por idioma se definen en `LANGUAGE_MAP` (puedes cambiarlas).
-Para ver las voces neurales disponibles:
-```bash
-edge-tts --list-voices
+### Cambiar voces
+
+Para cambiar la voz edge de cada idioma, edita estas constantes cerca del inicio de `main.py`
+(no hace falta tocar `LANGUAGE_MAP`):
+```python
+EDGE_VOICE_EN = "en-US-AriaNeural"    # Inglés         - femenina
+EDGE_VOICE_MX = "es-MX-DaliaNeural"   # Español México - femenina
+EDGE_VOICE_ES = "es-ES-ElviraNeural"  # Español España - femenina
 ```
+Ejemplo voz masculina en inglés: `EDGE_VOICE_EN = "en-US-GuyNeural"`.
+
+Ver voces disponibles:
+```bash
+edge-tts --list-voices                 # voces online (edge)
+edge-tts --list-voices | findstr en-US # filtrar por idioma (Windows)
+python list_voices.py                  # voces offline (SAPI5) + recordatorio edge
+```
+
+Para guardar una **referencia local** de las voces online, ejecuta `export_edge_voices.bat`
+(doble clic): genera `docs/voices_en-US.md` y `docs/voices_es.md` con las voces edge actuales
+y la fecha de generación.
 
 ## Estructura
 ```

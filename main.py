@@ -43,26 +43,35 @@ VOLUME = 1.0                 # Range: 0.0 to 1.0
 # Language used when a file has no recognizable suffix (must be a key of LANGUAGE_MAP)
 DEFAULT_LANGUAGE = "es-MX"
 
+# --- Voces edge-tts -----------------------------------------------------------
+# Para cambiar voces, edita SOLO estas constantes.
+# Para ver las voces online actuales: corre export_edge_voices.bat
+#   (o:  edge-tts --list-voices  /  edge-tts --list-voices | findstr en-US )
+# Después de cambiar una voz, corre run.bat y prueba con un archivo _en/_mx/_es.
+EDGE_VOICE_EN = "en-US-AriaNeural"    # Inglés (en-US)         - voz femenina
+EDGE_VOICE_MX = "es-MX-DaliaNeural"   # Español México (es-MX) - voz femenina
+EDGE_VOICE_ES = "es-ES-ElviraNeural"  # Español España (es-ES) - voz femenina
+
 # Language map: locale -> how to detect it and which voice to use per backend.
 #   suffixes      : filename endings (lowercase) that map to this locale
-#   edge_voice    : neural voice for edge-tts (see `edge-tts --list-voices`)
+#   edge_voice    : neural voice for edge-tts (edita arriba: EDGE_VOICE_*)
 #   offline_match : substrings searched in SAPI5 voice name/id (first match wins)
 LANGUAGE_MAP = {
     # offline_match is tried in order; put the most specific terms first
     # (locale token, then known voice names) so generic ones never win early.
     "en-US": {
         "suffixes": ["_en", "_us", "_en-us"],
-        "edge_voice": "en-US-AriaNeural",
+        "edge_voice": EDGE_VOICE_EN,
         "offline_match": ["en-us", "en_us", "zira", "david", "hazel", "english", "en-"],
     },
     "es-MX": {
         "suffixes": ["_mx", "_es-mx"],
-        "edge_voice": "es-MX-DaliaNeural",
+        "edge_voice": EDGE_VOICE_MX,
         "offline_match": ["es-mx", "es_mx", "sabina", "raul", "spanish", "es-"],
     },
     "es-ES": {
         "suffixes": ["_es", "_es-es"],
-        "edge_voice": "es-ES-ElviraNeural",
+        "edge_voice": EDGE_VOICE_ES,
         "offline_match": ["es-es", "es_es", "helena", "laura", "spanish", "es-"],
     },
 }
