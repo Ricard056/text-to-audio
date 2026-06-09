@@ -48,7 +48,7 @@ DEFAULT_LANGUAGE = "es-MX"
 # Para ver las voces online actuales: corre export_edge_voices.bat
 #   (o:  edge-tts --list-voices  /  edge-tts --list-voices | findstr en-US )
 # Después de cambiar una voz, corre run.bat y prueba con un archivo _en/_mx/_es.
-EDGE_VOICE_EN = "en-US-AriaNeural"    # Inglés (en-US)         - voz femenina
+EDGE_VOICE_EN = "en-US-MichelleNeural"    # Inglés (en-US)         - voz femenina
 EDGE_VOICE_MX = "es-MX-DaliaNeural"   # Español México (es-MX) - voz femenina
 EDGE_VOICE_ES = "es-ES-ElviraNeural"  # Español España (es-ES) - voz femenina
 

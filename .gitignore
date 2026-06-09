@@ -1,8 +1,11 @@
 # Carpetas de trabajo local (no versionar contenido)
 output/
+output__resp_local/
 input/
 input_local/
 input__resp_local/
+
+# Nota: docs/ y voice_tests_input/ SÍ se versionan (referencia de voces).
 
 # Python
 __pycache__/
